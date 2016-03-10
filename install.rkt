@@ -40,29 +40,25 @@
 (define login_cmd (string-append "source " login_script))
 (define (system-env arg) (system (string-append login_cmd " && " arg)))
 
-(define (libfreenect-installed?)
-  (display "Searching for libfreenect: ")
-  #t)
-
 ;; 7. For windows, we need to find out, which architecture DrRacket is built
 (require (only-in ffi/unsafe ctype-sizeof _pointer))
 (define racket-bits (* 8 (ctype-sizeof _pointer)))
+(define cmake_flags (if (= racket-bits 32)
+                        "-DCMAKE_CXX_FLAGS=-m32 -DCMAKE_C_FLAGS=-m32"
+                        ""))
 
 ; 8. The compilation routine (at least for macosx and unix)
  (if (or (equal? (system-type 'os) 'macosx)
           (equal? (system-type 'os) 'unix))
-      (if (libfreenect-installed?)
-          ;;LIBFREENECT is found!
-          (begin 
-            (display "-------------- BUILDING LIBFREENECT-C-WRAPPER FOR KINECT GRABBING --------------")
-            (newline)
-            (current-directory kinect-grab_c-path)
-            (if (system-env (string-append " make " (symbol->string (system-type 'os)) (number->string racket-bits))) ; "make macosx32",  "make macosx64", "make unix32"  or "make unix64"
-                (begin
-                  (copy-file (build-path (current-directory) "bin" dylib-file) dylib-path #t)
-                  #t)
-                (error "making the kinect-grab_c lib failed, although libFreenect seems to be installed")))
-          (error "LibFreenect is not found. Please check if the prefix path is set correctly in /.profile file!"))
+      (begin 
+        (display "-------------- BUILDING LIBFREENECT-C-WRAPPER FOR KINECT GRABBING --------------")
+        (newline)
+        (current-directory kinect-grab_c-path)
+        (if (system-env (string-append "mkdir build && cd build && cmake " cmake_flags " .. && make && cd .."))
+            (begin
+              (copy-file (build-path (current-directory) "bin" dylib-file) dylib-path #t)
+              #t)
+            (error "Making the kinect-grab_c lib failed")))
       ;;For windows
       (if (equal? (system-type 'os) 'windows)
           (let ((bindir     (build-path kinect-grab_c-path "bin" (string-append "win"(number->string racket-bits)))))
