@@ -9,6 +9,10 @@
 
   
 ;#################Get the captures from libfreenect ###########
+(define kinect_stop_c
+  (get-ffi-obj 'kinect_stop_c rackinect-dylib-path
+               (_fun -> (res :  _int))))
+
 (define kinect_grab_get_video_c
   (get-ffi-obj 'kinect_grab_get_video_c rackinect-dylib-path
                (_fun (img_vector_r img_vector_g img_vector_b width height device_id) :: [img_vector_r : _cvector]
@@ -60,6 +64,11 @@
                      -> (res :  _int)
                      -> (cons res (cons pos_x pos_y))
                      )))
+
+(define (stopgrabbing)
+  (if (= 0 (kinect_stop_c))
+      #t
+      (error "Error in rackinect.grab.stopgrabbing: Stopping not possible!")))
 
 (define (grabvideo [device_id 0])
   (let* ((width 640)
@@ -118,7 +127,8 @@
     ((1) (error "Error in rackinect.grab.grabvideo/unsafe: Sizes do not match!"))
     ((2) (error "Error in rackinect.grab.grabvideo/unsafe: Capture not possible!"))))
 
-(provide   grabvideo
+(provide   stopgrabbing
+           grabvideo
            grabdepth
            grabdepth+video
            grabvideo-depthinterval

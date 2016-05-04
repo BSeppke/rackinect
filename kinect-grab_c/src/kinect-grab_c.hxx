@@ -1,6 +1,11 @@
 #include "libfreenect_sync.h"
 #include "os_settings.hxx"
 
+LIBEXPORT int kinect_stop_c()
+{
+    freenect_sync_stop();
+    return 0;
+}
 
 LIBEXPORT int kinect_grab_get_video_c(float *arr_r, float *arr_g, float *arr_b, int width, int height, int device_id)
 {

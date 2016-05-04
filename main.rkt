@@ -9,7 +9,7 @@
            ;version
            rackinect-version
            
-           ;camracket.grab:
+           ;grab:
            grabvideo
            grabdepth
            grabdepth+video
@@ -19,4 +19,7 @@
            grabdepth/unsafe
            grabdepth+video/unsafe
            grabvideo-depthinterval/unsafe
+
+           ;stop
+           stopgrabbing
 ) ; End of "provide"

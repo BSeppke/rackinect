@@ -9,16 +9,16 @@
                     (image-height plt-image-height)))
 (require 2htdp/universe)
 
+(stopgrabbing)
+(sleep 1)
+
 (define pic_img   (grabvideo))
 (define pic   (image->racket-image pic_img))
-(sleep 0.1)
 
 (define depth_img (grabdepth))
 (define depth (image->racket-image depth_img))
-(sleep 0.1)
 
 (define depth+pic_img (grabdepth+video))
-(sleep 0.1)
 
 (define (status t update_each)
   (above (text "Number of Ticks:"  12 "black")
