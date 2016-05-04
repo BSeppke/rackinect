@@ -18,8 +18,11 @@ endforeach( OUTPUTCONFIG CMAKE_CONFIGURATION_TYPE)
 set(CMAKE_MACOSX_RPATH FALSE)
 
 #Find libfreenect
-find_library(FREENECT_LIBRARY freenect_sync)
-find_path(FREENECT_INCLUDE_DIR libfreenect)
+find_library(FREENECT_LIBRARY freenect)
+find_library(FREENECT_SYNC_LIBRARY freenect_sync)
+find_library(PTHREADS_LIBRARY pthreadVC2)
+find_library(USB_LIBRARY libusb)
+find_path(FREENECT_INCLUDE_DIR libfreenect.h)
 include_directories(${FREENECT_INCLUDE_DIR})
 
 add_subdirectory(src)

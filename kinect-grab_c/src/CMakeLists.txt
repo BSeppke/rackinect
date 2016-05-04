@@ -13,4 +13,4 @@ set(HEADERS
 
 # Tell CMake to create the library
 add_library(kinect-grab_c SHARED ${SOURCES} ${HEADERS})
-target_link_libraries(kinect-grab_c ${FREENECT_LIBRARY})
+target_link_libraries(kinect-grab_c ${FREENECT_LIBRARY} ${FREENECT_SYNC_LIBRARY} ${PTHREADS_LIBRARY} ${USB_LIBRARY})
