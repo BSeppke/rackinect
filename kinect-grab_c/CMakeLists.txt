@@ -20,6 +20,6 @@ set(CMAKE_MACOSX_RPATH FALSE)
 #Find libfreenect
 find_library(FREENECT_LIBRARY freenect_sync)
 find_path(FREENECT_INCLUDE_DIR libfreenect)
-include_directories(${FREENECT_INCLUDE_DIR})
+include_directories(${FREENECT_INCLUDE_DIR} ${FREENECT_INCLUDE_DIR}/libfreenect)
 
 add_subdirectory(src)
