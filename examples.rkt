@@ -9,13 +9,21 @@
                     (image-height plt-image-height)))
 (require 2htdp/universe)
 
-(define pic_img   (grabvideo))
+;;Initialise:
+(stopgrabbing)
+(void (grabdepth))
+(sleep 1)
+
+(define w 640)
+(define h 480)
+
+(define pic_img   (make-image w h 3))
 (define pic (image->bitmap pic_img))
   
-(define depth_img  (grabdepth))
+(define depth_img  (make-image w h 1))
 (define depth (image->bitmap depth_img))
 
-(define depth+pic_img   (grabdepth+video))
+(define depth+pic_img   (make-image w h 4))
 
 (define (status t update_each)
   (above (text "Number of Ticks:"  12 "black")
