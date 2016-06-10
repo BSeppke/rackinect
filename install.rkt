@@ -10,11 +10,11 @@
 (when (not (directory-exists? local-collects-path))
   (system (string-append "mkdir -p " (path->string local-collects-path))))
 
-;; 2. If vigracket-collects dir extist, delete it.
+;; 2. If rackinect-collects dir extist, delete it.
 (when (directory-exists? local-install-path)
   (delete-directory/files local-install-path))
 
-;; 3. copy the installation contents to the local/collects/vigracket directory
+;; 3. copy the installation contents to the local/collects/rackinect directory
 (copy-directory/files (current-directory) local-install-path)
 
 ;; 4. Load dll under windows, dylib under MacOS

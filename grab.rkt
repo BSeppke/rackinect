@@ -4,10 +4,9 @@
 
 (require rackinect/config)
 
-(require scheme/foreign)
-(unsafe!)
+(require ffi/unsafe)
+(require ffi/cvector)
 
-  
 ;#################Get the captures from libfreenect ###########
 (define kinect_stop_c
   (get-ffi-obj 'kinect_stop_c rackinect-dylib-path

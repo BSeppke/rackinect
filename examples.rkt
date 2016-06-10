@@ -9,16 +9,13 @@
                     (image-height plt-image-height)))
 (require 2htdp/universe)
 
-(stopgrabbing)
-(sleep 1)
-
 (define pic_img   (grabvideo))
-(define pic   (image->racket-image pic_img))
+(define pic (image->bitmap pic_img))
+  
+(define depth_img  (grabdepth))
+(define depth (image->bitmap depth_img))
 
-(define depth_img (grabdepth))
-(define depth (image->racket-image depth_img))
-
-(define depth+pic_img (grabdepth+video))
+(define depth+pic_img   (grabdepth+video))
 
 (define (status t update_each)
   (above (text "Number of Ticks:"  12 "black")
@@ -162,3 +159,7 @@
         (set! pic (image->racket-image pic_img))
         (set! pointer_pos (grabtopleft))));(img->pointer depth_img))))
   (underlay/xy pic (- (car pointer_pos) (/ radius 2)) (- (cdr pointer_pos) (/ radius 2)) (circle radius "solid" "yellow")))
+
+
+;;Terminate grabbing using:
+; (stopgrabbing)
