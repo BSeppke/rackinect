@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.11)
+cmake_minimum_required(VERSION 3.1)
 
 project(kinect-grab_c)
 
@@ -17,12 +17,16 @@ endforeach( OUTPUTCONFIG CMAKE_CONFIGURATION_TYPE)
 
 set(CMAKE_MACOSX_RPATH FALSE)
 
-#Find libfreenect
-find_library(FREENECT_LIBRARY freenect)
-find_library(FREENECT_SYNC_LIBRARY freenect_sync)
-find_library(PTHREADS_LIBRARY pthreadVC2)
-find_library(USB_LIBRARY NAMES libusb libusb-1.0)
-find_path(FREENECT_INCLUDE_DIR libfreenect.h)
-include_directories(${FREENECT_INCLUDE_DIR})
+find_library(FREENECT_LIBRARIES freenect_sync)
+find_path(FREENECT_INCLUDE_DIR libfreenect libfreenect.h)
+
+if(WIN32)
+	find_library(FREENECT_LIBRARY freenect)
+	find_library(PTHREADS_LIBRARY pthreadVC2)
+	find_library(USB_LIBRARY libusb-1.0)
+	set(FREENECT_LIBRARIES ${FREENECT_LIBRARIES} ${FREENECT_LIBRARY} ${PTHREADS_LIBRARY} ${USB_LIBRARY})
+endif()
+
+include_directories(${FREENECT_INCLUDE_DIR} ${FREENECT_INCLUDE_DIR}/libfreenect)
 
 add_subdirectory(src)
