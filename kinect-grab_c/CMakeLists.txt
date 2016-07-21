@@ -21,7 +21,7 @@ set(CMAKE_MACOSX_RPATH FALSE)
 find_library(FREENECT_LIBRARY freenect)
 find_library(FREENECT_SYNC_LIBRARY freenect_sync)
 find_library(PTHREADS_LIBRARY pthreadVC2)
-find_library(USB_LIBRARY libusb)
+find_library(USB_LIBRARY NAMES libusb libusb-1.0)
 find_path(FREENECT_INCLUDE_DIR libfreenect.h)
 include_directories(${FREENECT_INCLUDE_DIR})
 
