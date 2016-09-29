@@ -19,6 +19,7 @@ set(CMAKE_MACOSX_RPATH FALSE)
 
 find_library(FREENECT_LIBRARIES freenect_sync)
 find_path(FREENECT_INCLUDE_DIR libfreenect libfreenect.h)
+find_path(FREENECT_INCLUDE_DIR libfreenect.h)
 
 if(WIN32)
 	find_library(FREENECT_LIBRARY freenect)

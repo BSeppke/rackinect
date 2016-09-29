@@ -8,7 +8,7 @@
 
 ;; 1. Create local collects directory if not already existing
 (when (not (directory-exists? local-collects-path))
-  (system (string-append "mkdir -p " (path->string local-collects-path))))
+  (make-directory* local-collects-path))
 
 ;; 2. If rackinect-collects dir extist, delete it.
 (when (directory-exists? local-install-path)
@@ -37,7 +37,7 @@
                          base_login_script
                          (path->string (build-path kinect-grab_c-path "fallback.profile"))))
 
-(define login_cmd (string-append "source " login_script))
+(define login_cmd (string-append ". " login_script))
 (define (system-env arg) (system (string-append login_cmd " && " arg)))
 
 ;; 7. For windows, we need to find out, which architecture DrRacket is built
