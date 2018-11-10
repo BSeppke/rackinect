@@ -31,3 +31,4 @@ endif()
 include_directories(${FREENECT_INCLUDE_DIR} ${FREENECT_INCLUDE_DIR}/libfreenect)
 
 add_subdirectory(src)
+add_subdirectory(doc)

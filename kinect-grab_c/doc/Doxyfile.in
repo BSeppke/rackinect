@@ -1,0 +1,66 @@
+# Doxyfile 1.6.3
+
+INPUT = @CMAKE_CURRENT_SOURCE_DIR@/../src/  @CMAKE_CURRENT_SOURCE_DIR@/../../README.md
+
+# The RECURSIVE tag can be used to turn specify whether or not subdirectories
+# should be searched for input files as well. Possible values are YES and NO.
+# If left blank NO is used.
+
+RECURSIVE              = YES
+
+# The PROJECT_NAME tag is a single word (or a sequence of words surrounded by 
+# double-quotes, unless you are using Doxywizard) that should identify the project
+# for which the documentation is generated. This name is used in the title of most 
+# generated pages and in a few other places.
+#
+# The default value is: My Project.
+
+PROJECT_NAME = KINECT-GRAB_C
+
+
+# The PROJECT_NUMBER tag can be used to enter a project or revision number. This could be
+# handy for archiving the generated documentation or if some version control system is 
+# used.
+# PROJECT_NUMBER = 1.0
+
+MACRO_EXPANSION = YES
+
+# Using the PROJECT_BRIEF tag one can provide an optional one line description for a 
+# project that appears at the top of each page and should give viewer a quick idea about 
+# the purpose of the project. Keep the description short.
+
+PROJECT_BRIEF = "wraps (parts of) libfreenect's functionality into a C shared library" 
+
+# If the ALPHABETICAL_INDEX tag is set to YES, an alphabetical index 
+# of all compounds will be generated. Enable this if the project 
+# contains a lot of classes, structs, unions or interfaces.
+
+ALPHABETICAL_INDEX     = YES
+
+# If the alphabetical index is enabled (see ALPHABETICAL_INDEX) then 
+# the COLS_IN_ALPHA_INDEX tag can be used to specify the number of columns 
+# in which this list will be split (can be a number in the range [1..20])
+
+COLS_IN_ALPHA_INDEX    = 6 
+
+# In case all classes in a project start with a common prefix, all classes will be put 
+# under the same header in the alphabetical index. The IGNORE_PREFIX tag can be used to 
+# specify a prefix (or a list of prefixes) that should be ignored while generating the 
+# index headers.
+
+IGNORE_PREFIX          = kinect_
+
+
+# With the PROJECT_LOGO tag one can specify a logo or an icon that is included in the 
+# documentation. The maximum height of the logo should not exceed 55 pixels and the 
+# maximum width should not exceed 200 pixels. Doxygen will copy the logo to the output
+# directory.
+# PROJECT_LOGO = 
+
+
+
+
+# Show the readme.md as mainpage
+
+MARKDOWN_SUPPORT = YES
+USE_MDFILE_AS_MAINPAGE = @CMAKE_CURRENT_SOURCE_DIR@/../../README.md
