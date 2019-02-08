@@ -1,6 +1,6 @@
 #lang racket
 
-(require vigracket)
+(require vigracket/helpers)
 
 (require rackinect/config)
 

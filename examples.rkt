@@ -1,6 +1,9 @@
 #lang racket
 
-(require vigracket)
+(require vigracket/helpers
+         vigracket/convert
+         vigracket/imgproc
+         vigracket/morphology)
 (require rackinect)
 
 (require (rename-in 2htdp/image
